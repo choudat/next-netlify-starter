@@ -47,6 +47,19 @@
   text-decoration: underline;
 }
 
+.services {
+  margin: 2rem 0;
+}
+
+.serviceItem {
+  margin: 1.5rem 0;
+}
+
+.serviceItem h3 {
+  font-size: 1.2rem;
+  margin-bottom: 0.5rem;
+}
+
 @media (max-width: 768px) {
   .main {
     padding: 2rem 0;
