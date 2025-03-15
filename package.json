@@ -9,6 +9,8 @@
     "export": "next build && next export"
   },
   "dependencies": {
+    "@grafana/faro-web-sdk": "^1.14.1",
+    "@grafana/faro-web-tracing": "^1.14.1",
     "@netlify/plugin-nextjs": "^5.10.0",
     "gray-matter": "^4.0.3",
     "marked": "^15.0.7",
@@ -16,5 +18,8 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "remark": "^15.0.1"
+  },
+  "devDependencies": {
+    "@grafana/faro-webpack-plugin": "^0.2.1"
   }
 }
