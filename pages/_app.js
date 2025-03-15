@@ -1,12 +1,13 @@
-import '@styles/globals.css'
-import Header from '../components/Header'
+import { useEffect } from 'react';
+import { initializeFaroMonitoring } from '../utils/faro';
+import '../styles/globals.css';
 
-function Application({ Component, pageProps }) {
-  return (
-    <>
-      <Component {...pageProps} />
-    </>
-  )
+function MyApp({ Component, pageProps }) {
+  useEffect(() => {
+    initializeFaroMonitoring();
+  }, []);
+
+  return <Component {...pageProps} />;
 }
 
-export default Application
+export default MyApp;
