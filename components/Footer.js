@@ -13,7 +13,6 @@ export default function Footer() {
           Data Privacy
         </Link>
       </div>
-      <img src="/logo-connethics.png" alt="ConnEthics Logo" className={styles.logo} />
     </footer>
   )
 }
