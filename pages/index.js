@@ -2,8 +2,10 @@ import Head from 'next/head'
 import Header from '@components/Header'
 import Footer from '@components/Footer'
 import styles from '../styles/Home.module.css'
+import { getClient, expertisesQuery } from '../lib/sanity'
 
-export default function Home() {
+export default function Home({ expertises }) {
+  
   return (
     <div className={styles.container}>
       <Head>
@@ -31,30 +33,13 @@ export default function Home() {
         </div>
 
         <div className={styles.grid}>
-          <div className={styles.card}>
-            <h3>Self-Sovereign Identity</h3>
-            <p>Prepare for Self-Sovereign Identity (SSI) integration and deployment. Empower individuals to securely control their digital identities using product management methodologies and tools.</p>
-          </div>
-
-          <div className={styles.card}>
-            <h3>Ecosystem Cartography</h3>
-            <p>Generate actionable insights through economic warfare analysis. Gain a comprehensive understanding of your business ecosystem, from competitive intelligence to strategic communication and lobbying.</p>
-          </div>
-
-          <div className={styles.card}>
-            <h3>Trust and Identity Deployment</h3>
-            <p>Define, build, and certify verifiable credentials. Ensure their secure adoption across your network to enhance trust and identity management.</p>
-          </div>
-
-          <div className={styles.card}>
-            <h3>Product Leadership</h3>
-            <p>Align product roadmaps with strategic goals and OKRs. Prioritize initiatives using data-driven insights and foster a culture of innovation through continuous backlog refinement and stakeholder engagement.</p>
-          </div>
-
-          <div className={styles.card}>
-            <h3>Product Management</h3>
-            <p>Initiate and scale product teams effectively. Implement robust release processes and manage dependencies to ensure timely delivery. Optimize team structures and interactions through event storming and continuous mapping.</p>
-          </div>
+          <h2>Our expertises</h2>
+          {expertises.map((expertise) => (
+            <div key={expertise._id} className={styles.card}>
+              <h3>{expertise.title}</h3>
+              <p>{expertise.description}</p>
+            </div>
+          ))}
         </div>
 
         <div className={styles.grid}>
@@ -73,4 +58,24 @@ export default function Home() {
       <Footer />
     </div>
   )
+}
+
+export async function getStaticProps() {
+  try {
+    const expertises = await getClient().fetch(expertisesQuery)
+
+    return {
+      props: {
+        expertises: expertises || []
+      },
+      revalidate: 60
+    }
+  } catch (error) {
+    console.error('Error fetching data:', error)
+    return {
+      props: {
+        expertises: []
+      }
+    }
+  }
 }
