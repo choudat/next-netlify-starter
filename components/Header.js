@@ -13,8 +13,8 @@ export default function Header() {
           <Image 
             src="/logo-connethics.png"
             alt="Connethics Logo"
-            width={150}
-            height={150}
+            width={100}
+            height={100}
             priority
             style={{
               objectFit: 'contain',
