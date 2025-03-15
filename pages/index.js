@@ -31,6 +31,7 @@ export default function Home() {
         </div>
 
         <div className={styles.grid}>
+        <h2>Our services</h2>
           <div className={styles.card}>
             <h3>Self-Sovereign Identity</h3>
             <p>Prepare for Self-Sovereign Identity (SSI) integration and deployment. Empower individuals to securely control their digital identities using product management methodologies and tools.</p>
