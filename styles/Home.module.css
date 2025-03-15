@@ -13,7 +13,7 @@
   margin: 2rem 0;
   padding: 2rem;
   border-radius: 10px;
-  background: #f8f9fa;
+  background: var(--color-background-secondary);
   transition: transform 0.2s;
 }
 
@@ -24,7 +24,7 @@
 .mission {
   font-size: 1.5rem;
   text-align: center;
-  color: #2c3e50;
+  color: var(--color-text);
   margin: 3rem 0;
 }
 
@@ -38,7 +38,7 @@
 }
 
 .contact a {
-  color: #0070f3;
+  color: var(--color-secondary);
   text-decoration: none;
   font-weight: 600;
 }
@@ -74,4 +74,85 @@
     font-size: 1.25rem;
     margin: 2rem 0;
   }
+}
+
+.markdown {
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 2rem;
+  line-height: 1.6;
+}
+
+.markdown h1, .markdown h2, .markdown h3 {
+  color: var(--color-primary);
+  margin: 2rem 0 1rem;
+}
+
+.markdown p {
+  margin: 1rem 0;
+}
+
+.markdown ul, .markdown ol {
+  margin: 1rem 0;
+  padding-left: 2rem;
+}
+
+.markdown pre {
+  background: var(--color-background-secondary);
+  padding: 1rem;
+  border-radius: 5px;
+  overflow-x: auto;
+}
+
+.markdown code {
+  background: var(--color-background-secondary);
+  padding: 0.2rem 0.4rem;
+  border-radius: 3px;
+  color: var(--color-secondary);
+}
+
+.markdown blockquote {
+  border-left: 4px solid var(--color-accent);
+  margin: 1rem 0;
+  padding-left: 1rem;
+  color: var(--color-text);
+}
+
+.markdown img {
+  max-width: 100%;
+  height: auto;
+}
+
+.cardTitle {
+  margin: 0 0 1rem 0;
+  font-size: 1.5rem;
+  color: var(--color-primary);
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.cardTitle:hover {
+  text-decoration: underline;
+}
+
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin: 1rem 0;
+}
+
+.tag {
+  background: var(--color-background-secondary);
+  padding: 0.25rem 0.5rem;
+  border-radius: 15px;
+  font-size: 0.8rem;
+  color: var(--color-secondary);
+}
+
+.date {
+  color: var(--color-text);
+  display: block;
+  margin-top: 0.5rem;
 }
