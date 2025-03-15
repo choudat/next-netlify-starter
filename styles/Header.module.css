@@ -1,0 +1,27 @@
+.header {
+  padding: 1rem 2rem;
+  background: var(--color-background-secondary);
+  border-bottom: 1px solid var(--color-primary);
+}
+
+.nav {
+  display: flex;
+  gap: 2rem;
+  margin-bottom: 1rem;
+}
+
+.nav a {
+  color: var(--color-text);
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.nav a:hover {
+  color: var(--color-secondary);
+}
+
+.title {
+  font-size: 2rem;
+  color: var(--color-primary);
+  margin: 0;
+}
