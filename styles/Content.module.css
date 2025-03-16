@@ -1,0 +1,20 @@
+.container {
+    padding: 0 1rem;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  
+  .main {
+    padding: 0rem 0;
+    min-height: 100vh;
+  }
+
+.article {
+  line-height: 1.6;
+}
+
+.article h1 {
+  font-size: 2.5rem;
+  margin-bottom: 2rem;
+  color: var(--color-primary);
+}
