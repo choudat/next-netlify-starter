@@ -68,6 +68,7 @@ export async function getStaticProps({ params }) {
           content: parsedContent,
           date: data.date,
           excerpt: data.excerpt,
+          slug: data.slug,
         },
       },
     };

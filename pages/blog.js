@@ -9,7 +9,7 @@ import matter from "gray-matter";
 
 export default function Blog({ posts }) {
   return (
-    <div>
+    <div className={styles.container}>
       <Head>
         <title>Blog - ConnEthics</title>
       </Head>
