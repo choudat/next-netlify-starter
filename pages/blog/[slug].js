@@ -7,11 +7,18 @@ import path from "path";
 import matter from "gray-matter";
 import { marked } from "marked";
 
+// Add this helper function at the top level of the file
+function sanitizeTitle(text) {
+  return text ? text.replace(/(<([^>]+)>)/gi, "") : "";
+}
+
 export default function BlogPost({ post }) {
+  const pageTitle = `${sanitizeTitle(post.title)} - ConnEthics`;
+
   return (
     <div className={styles.container}>
       <Head>
-        <title>{post.title} - ConnEthics</title>
+        <title>{pageTitle}</title>
         <style>{`
           .markdown-content h1 { font-size: 2em; margin-bottom: 1em; }
           .markdown-content h2 { font-size: 1.5em; margin-bottom: 0.8em; }
