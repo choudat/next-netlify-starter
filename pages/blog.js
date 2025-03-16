@@ -11,7 +11,7 @@ export default function Blog({ posts }) {
   return (
     <div className={styles.container}>
       <Head>
-        <title>Blog - ConnEthics</title>
+        <title>{"Blog - ConnEthics"}</title>
       </Head>
       <main className={styles.main}>
         <Header title="Blog" />
