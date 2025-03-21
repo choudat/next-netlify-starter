@@ -1,24 +1,17 @@
 import Head from "next/head";
 import Header from "@components/Header";
 import Footer from "@components/Footer";
-import styles from "../../styles/Home.module.css";
 import fs from "fs";
 import path from "path";
 import matter from "gray-matter";
 import { marked } from "marked";
+import styles from "../../styles/Content.module.css";
 
-// Add this helper function at the top level of the file
-function sanitizeTitle(text) {
-  return text ? text.replace(/(<([^>]+)>)/gi, "") : "";
-}
-
-export default function BlogPost({ post }) {
-  const pageTitle = `${sanitizeTitle(post.title)} - ConnEthics`;
-
+export default function ContentPage({ content }) {
   return (
     <div className={styles.container}>
       <Head>
-        <title>{pageTitle}</title>
+        <title>{content.title} - ConnEthics</title>
         <style>{`
           .markdown-content h1 { font-size: 2em; margin-bottom: 1em; }
           .markdown-content h2 { font-size: 1.5em; margin-bottom: 0.8em; }
@@ -26,14 +19,15 @@ export default function BlogPost({ post }) {
           .markdown-content p { margin-bottom: 1em; line-height: 1.6; }
           .markdown-content ul, .markdown-content ol { margin-left: 2em; margin-bottom: 1em; }
           .markdown-content li { margin-bottom: 0.5em; }
-        `}</style>
+        `}</style>{" "}
       </Head>
+      <Header />
       <main className={styles.main}>
-        <Header title={post.title} />
         <article className={styles.article}>
+          <h1>{content.title}</h1>
           <div
             className="markdown-content"
-            dangerouslySetInnerHTML={{ __html: post.content }}
+            dangerouslySetInnerHTML={{ __html: content.content }}
           />
         </article>
       </main>
@@ -43,14 +37,16 @@ export default function BlogPost({ post }) {
 }
 
 export async function getStaticPaths() {
-  const postsDirectory = path.join(process.cwd(), "posts");
-  const filenames = fs.readdirSync(postsDirectory);
+  const contentDirectory = path.join(process.cwd(), "content");
+  const filenames = fs.readdirSync(contentDirectory);
 
-  const paths = filenames.map((filename) => ({
-    params: {
-      slug: filename.replace(".md", ""),
-    },
-  }));
+  const paths = filenames
+    .filter((filename) => filename.endsWith(".md"))
+    .map((filename) => ({
+      params: {
+        slug: "about", // Pour l'instant on hardcode 'about' car c'est notre seule page
+      },
+    }));
 
   return {
     paths,
@@ -60,22 +56,24 @@ export async function getStaticPaths() {
 
 export async function getStaticProps({ params }) {
   try {
-    const filePath = path.join(process.cwd(), "posts", `${params.slug}.md`);
+    const filePath = path.join(process.cwd(), "content", `${params.slug}.md`);
     const fileContent = fs.readFileSync(filePath, "utf8");
     const { data, content } = matter(fileContent);
-
     const parsedContent = marked(content);
 
     return {
       props: {
-        post: {
+        content: {
           title: data.title,
           content: parsedContent,
           date: data.date,
+          excerpt: data.excerpt,
+          slug: data.slug,
         },
       },
     };
   } catch (error) {
+    console.error("Error loading content:", error);
     return {
       notFound: true,
     };
