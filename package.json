@@ -12,6 +12,7 @@
     "@grafana/faro-web-sdk": "^1.14.1",
     "@grafana/faro-web-tracing": "^1.14.1",
     "@netlify/plugin-nextjs": "^5.10.0",
+    "@vercel/speed-insights": "^1.2.0",
     "gray-matter": "^4.0.3",
     "marked": "^15.0.7",
     "next": "^15.0.0",
