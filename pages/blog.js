@@ -6,6 +6,7 @@ import Link from "next/link";
 import fs from "fs";
 import path from "path";
 import matter from "gray-matter";
+import { isBlogEnabled } from "../utils/statsig";
 
 export default function Blog({ posts }) {
   return (
@@ -43,6 +44,17 @@ export default function Blog({ posts }) {
 
 export async function getStaticProps() {
   try {
+    const blogEnabled = await isBlogEnabled();
+
+    if (!blogEnabled) {
+      return {
+        redirect: {
+          destination: "/",
+          permanent: false,
+        },
+      };
+    }
+
     const postsDirectory = path.join(process.cwd(), "posts");
     const filenames = fs.readdirSync(postsDirectory);
 
