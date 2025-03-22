@@ -19,7 +19,7 @@ export default function ContentPage({ content }) {
           .markdown-content p { margin-bottom: 1em; line-height: 1.6; }
           .markdown-content ul, .markdown-content ol { margin-left: 2em; margin-bottom: 1em; }
           .markdown-content li { margin-bottom: 0.5em; }
-        `}</style>{" "}
+        `}</style>
       </Head>
       <Header />
       <main className={styles.main}>
