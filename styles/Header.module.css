@@ -66,6 +66,29 @@
   transform: translateY(-5px);
 }
 
+.nav a.active::after {
+  transform: scaleX(1);
+  background-color: var(--color-secondary);
+}
+
+.socialIcon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-text);
+  transition: color 0.2s ease, transform 0.2s ease;
+}
+
+.socialIcon:hover {
+  color: var(--color-secondary);
+  transform: translateY(-5px);
+}
+
+.socialIcon svg {
+  width: 24px;
+  height: 24px;
+}
+
 .title {
   font-size: 2rem;
   color: var(--color-primary);
