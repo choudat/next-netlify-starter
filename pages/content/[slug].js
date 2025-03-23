@@ -21,7 +21,7 @@ export default function ContentPage({ content }) {
           .markdown-content li { margin-bottom: 0.5em; }
         `}</style>
       </Head>
-      <Header />
+      <Header currentPage={content.slug} />
       <main className={styles.main}>
         <article className={styles.article}>
           <h1>{content.title}</h1>
@@ -44,7 +44,7 @@ export async function getStaticPaths() {
     .filter((filename) => filename.endsWith(".md"))
     .map((filename) => ({
       params: {
-        slug: "about", // Pour l'instant on hardcode 'about' car c'est notre seule page
+        slug: filename.replace(".md", ""),
       },
     }));
 
