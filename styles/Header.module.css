@@ -1,24 +1,16 @@
-.container {
-  padding: 0 1rem;
-  max-width: 1200px;
-  margin: 0 auto;
-}
-
-.main {
-  padding: 0rem 0;
-  min-height: 100vh;
-}
-
 .header {
   display: flex;
   justify-content: space-between;
   align-items: center;
   width: 100%;
-  background: var(--color-background-secondary);
-  border-bottom: 1px solid var(--color-primary);
+  background: var(--color-background);
+  border-bottom: 1px solid var(--color-border);
   position: sticky;
   top: 0;
   z-index: 1000;
+  padding: 1rem 2rem;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 2px 20px rgba(0, 0, 0, 0.05);
 }
 
 .logoContainer {
@@ -26,25 +18,31 @@
   align-items: center;
   width: clamp(80px, 15vw, 150px);
   height: auto;
+  transition: transform 0.3s ease;
+}
+
+.logoContainer:hover {
+  transform: scale(1.05);
 }
 
 .nav {
   display: flex;
   gap: 2rem;
-  margin-bottom: 0.5rem;
+  align-items: center;
 }
 
-.nav a {
+.navLink {
   color: var(--color-text);
   text-decoration: none;
   font-weight: 500;
   padding: 0.5rem 1rem;
-  transition: transform 0.2s ease;
+  transition: all 0.3s ease;
   display: inline-block;
   position: relative;
+  border-radius: 6px;
 }
 
-.nav a::after {
+.navLink::after {
   content: '';
   position: absolute;
   left: 1rem;
@@ -53,20 +51,25 @@
   height: 2px;
   background-color: var(--color-secondary);
   transform: scaleX(0);
-  transition: transform 0.2s ease;
+  transition: transform 0.3s ease;
 }
 
-.nav a:hover::after,
-.nav a[aria-current="page"]::after {
+.navLink:hover {
+  color: var(--color-secondary);
+  background: rgba(0, 155, 224, 0.05);
+}
+
+.navLink:hover::after,
+.navLink[aria-current="page"]::after {
   transform: scaleX(1);
 }
 
-.nav a:hover {
+.navLink.active {
   color: var(--color-secondary);
-  transform: translateY(-5px);
+  background: rgba(0, 155, 224, 0.1);
 }
 
-.nav a.active::after {
+.navLink.active::after {
   transform: scaleX(1);
   background-color: var(--color-secondary);
 }
@@ -76,12 +79,15 @@
   align-items: center;
   justify-content: center;
   color: var(--color-text);
-  transition: color 0.2s ease, transform 0.2s ease;
+  transition: all 0.3s ease;
+  padding: 0.5rem;
+  border-radius: 6px;
 }
 
 .socialIcon:hover {
   color: var(--color-secondary);
-  transform: translateY(-5px);
+  background: rgba(0, 155, 224, 0.1);
+  transform: translateY(-2px);
 }
 
 .socialIcon svg {
@@ -93,4 +99,24 @@
   font-size: 2rem;
   color: var(--color-primary);
   margin: 0;
+}
+
+/* Mobile Navigation */
+@media (max-width: 768px) {
+  .header {
+    padding: 1rem;
+  }
+  
+  .nav {
+    gap: 1rem;
+  }
+  
+  .navLink {
+    padding: 0.5rem;
+    font-size: 0.9rem;
+  }
+  
+  .logoContainer {
+    width: clamp(60px, 12vw, 120px);
+  }
 }

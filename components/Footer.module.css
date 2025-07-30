@@ -1,33 +1,99 @@
 .footer {
-  width: 100%;
-  height: 100px;
-  border-top: 1px solid #eaeaea;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  background: var(--color-primary);
+  color: white;
+  padding: 3rem 0 1rem;
+  margin-top: 4rem;
 }
 
-.logo {
-  height: 3em;
-  margin: 5px;
+.footerContent {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+  margin-bottom: 2rem;
 }
 
-.links {
+.footerSection h4 {
+  color: white;
   margin-bottom: 1rem;
+  font-size: 1.1rem;
+  font-weight: 600;
 }
 
-.link {
-  color: #666;
+.footerSection p {
+  color: rgba(255, 255, 255, 0.8);
+  line-height: 1.6;
+  margin: 0;
+}
+
+.footerLinks {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.footerLinks li {
+  margin-bottom: 0.5rem;
+}
+
+.footerLinks a {
+  color: rgba(255, 255, 255, 0.8);
   text-decoration: none;
+  transition: color 0.3s ease;
+  font-size: 0.95rem;
+}
+
+.footerLinks a:hover {
+  color: var(--color-accent);
+}
+
+.footerBottom {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 1rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.footerBottom p {
+  color: rgba(255, 255, 255, 0.7);
+  margin: 0;
   font-size: 0.9rem;
-  transition: color 0.2s;
 }
 
-.link:hover {
-  color: #0070f3;
+.socialLinks {
+  display: flex;
+  gap: 1rem;
 }
 
-.separator {
-  margin: 0 1rem;
-  color: #666;
+.socialLink {
+  color: rgba(255, 255, 255, 0.8);
+  transition: color 0.3s ease, transform 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.socialLink:hover {
+  color: var(--color-accent);
+  transform: translateY(-2px);
+}
+
+@media (max-width: 768px) {
+  .footerContent {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+  }
+  
+  .footerBottom {
+    flex-direction: column;
+    text-align: center;
+    gap: 0.5rem;
+  }
 }
