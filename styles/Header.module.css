@@ -1,74 +1,79 @@
-.container {
-  padding: 0 1rem;
-  max-width: 1200px;
-  margin: 0 auto;
-}
-
-.main {
-  padding: 0rem 0;
-  min-height: 100vh;
-}
-
 .header {
   display: flex;
   justify-content: space-between;
   align-items: center;
   width: 100%;
-  background: var(--color-background-secondary);
-  border-bottom: 1px solid var(--color-primary);
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--color-border);
   position: sticky;
   top: 0;
   z-index: 1000;
+  padding: 1rem 2rem;
+  box-shadow: 0 2px 10px var(--color-shadow-light);
+  transition: all 0.3s ease;
 }
 
 .logoContainer {
   display: flex;
   align-items: center;
-  width: clamp(80px, 15vw, 150px);
+  width: clamp(80px, 15vw, 120px);
   height: auto;
+}
+
+.logoContainer img {
+  transition: transform 0.2s ease;
+}
+
+.logoContainer:hover img {
+  transform: scale(1.05);
 }
 
 .nav {
   display: flex;
   gap: 2rem;
-  margin-bottom: 0.5rem;
+  align-items: center;
 }
 
-.nav a {
+.navLink {
   color: var(--color-text);
   text-decoration: none;
   font-weight: 500;
-  padding: 0.5rem 1rem;
-  transition: transform 0.2s ease;
+  padding: 0.75rem 1.25rem;
+  transition: all 0.2s ease;
   display: inline-block;
   position: relative;
+  border-radius: 8px;
+  font-size: 0.95rem;
 }
 
-.nav a::after {
+.navLink::after {
   content: '';
   position: absolute;
-  left: 1rem;
-  right: 1rem;
-  bottom: 0;
+  left: 1.25rem;
+  right: 1.25rem;
+  bottom: 0.25rem;
   height: 2px;
-  background-color: var(--color-secondary);
+  background: var(--gradient-primary);
   transform: scaleX(0);
   transition: transform 0.2s ease;
+  border-radius: 1px;
 }
 
-.nav a:hover::after,
-.nav a[aria-current="page"]::after {
-  transform: scaleX(1);
-}
-
-.nav a:hover {
+.navLink:hover {
   color: var(--color-secondary);
-  transform: translateY(-5px);
+  background: var(--color-background-secondary);
+  transform: translateY(-1px);
 }
 
-.nav a.active::after {
+.navLink:hover::after,
+.navLink.active::after {
   transform: scaleX(1);
-  background-color: var(--color-secondary);
+}
+
+.navLink.active {
+  color: var(--color-secondary);
+  background: var(--color-background-secondary);
 }
 
 .socialIcon {
@@ -76,21 +81,51 @@
   align-items: center;
   justify-content: center;
   color: var(--color-text);
-  transition: color 0.2s ease, transform 0.2s ease;
+  padding: 0.75rem;
+  border-radius: 8px;
+  transition: all 0.2s ease;
+  background: transparent;
 }
 
 .socialIcon:hover {
   color: var(--color-secondary);
-  transform: translateY(-5px);
+  background: var(--color-background-secondary);
+  transform: translateY(-1px);
 }
 
 .socialIcon svg {
-  width: 24px;
-  height: 24px;
+  width: 20px;
+  height: 20px;
 }
 
-.title {
-  font-size: 2rem;
-  color: var(--color-primary);
-  margin: 0;
+/* Mobile responsive */
+@media (max-width: 768px) {
+  .header {
+    padding: 0.75rem 1rem;
+  }
+  
+  .nav {
+    gap: 1rem;
+  }
+  
+  .navLink {
+    padding: 0.5rem 0.75rem;
+    font-size: 0.9rem;
+  }
+  
+  .navLink::after {
+    left: 0.75rem;
+    right: 0.75rem;
+  }
+}
+
+@media (max-width: 640px) {
+  .nav {
+    gap: 0.5rem;
+  }
+  
+  .navLink {
+    padding: 0.5rem;
+    font-size: 0.85rem;
+  }
 }
