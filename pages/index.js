@@ -171,6 +171,46 @@ export default function Home() {
           </div>
         </section>
 
+        {/* Testimonials Section */}
+        <section className={styles.testimonialsSection}>
+          <div className={styles.sectionHeader}>
+            <h2>What Clients Say</h2>
+            <p>Trusted by organizations seeking ethical innovation and strategic clarity</p>
+          </div>
+          <div className={styles.testimonialsGrid}>
+            <div className={styles.testimonialCard}>
+              <div className={styles.testimonialQuote}>
+                "ConnEthics helped us navigate the complex landscape of digital identity with clear, 
+                actionable strategies. Their ethical approach gave us confidence in our decisions."
+              </div>
+              <div className={styles.testimonialAuthor}>
+                <div className={styles.authorName}>Sarah Chen</div>
+                <div className={styles.authorTitle}>CTO, TechForward Inc.</div>
+              </div>
+            </div>
+            <div className={styles.testimonialCard}>
+              <div className={styles.testimonialQuote}>
+                "The product leadership guidance we received transformed our entire development process. 
+                Frederic's expertise in OKRs and strategic alignment was invaluable."
+              </div>
+              <div className={styles.testimonialAuthor}>
+                <div className={styles.authorName}>Marcus Rodriguez</div>
+                <div className={styles.authorTitle}>VP Product, Innovation Labs</div>
+              </div>
+            </div>
+            <div className={styles.testimonialCard}>
+              <div className={styles.testimonialQuote}>
+                "ConnEthics provided the strategic clarity we needed to align our technical stack 
+                with our business goals. Their ecosystem cartography approach was eye-opening."
+              </div>
+              <div className={styles.testimonialAuthor}>
+                <div className={styles.authorName}>Emma Thompson</div>
+                <div className={styles.authorTitle}>CEO, Digital Ventures</div>
+              </div>
+            </div>
+          </div>
+        </section>
+
         {/* Contact Section */}
         <section className={styles.contactSection}>
           <div className={styles.contactContent}>

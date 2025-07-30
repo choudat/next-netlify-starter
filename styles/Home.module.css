@@ -15,6 +15,27 @@
   }
 }
 
+/* Scroll animations */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
 /* Hero Section */
 .hero {
   background: linear-gradient(135deg, var(--color-background) 0%, var(--color-background-secondary) 100%);
@@ -40,6 +61,7 @@
   z-index: 2;
   max-width: 800px;
   margin: 0 auto;
+  animation: fadeInUp 0.8s ease-out;
 }
 
 .heroTitle {
@@ -53,6 +75,9 @@
 .highlight {
   color: var(--color-secondary);
   position: relative;
+  background: linear-gradient(120deg, transparent 0%, rgba(0, 155, 224, 0.1) 50%, transparent 100%);
+  padding: 0 0.5rem;
+  border-radius: 4px;
 }
 
 .heroSubtitle {
@@ -61,6 +86,7 @@
   margin-bottom: 2.5rem;
   line-height: 1.6;
   opacity: 0.9;
+  animation: fadeInUp 0.8s ease-out 0.2s both;
 }
 
 .heroActions {
@@ -68,6 +94,7 @@
   gap: 1rem;
   justify-content: center;
   flex-wrap: wrap;
+  animation: fadeInUp 0.8s ease-out 0.4s both;
 }
 
 .ctaPrimary {
@@ -79,6 +106,23 @@
   font-weight: 600;
   transition: all 0.3s ease;
   border: 2px solid var(--color-secondary);
+  position: relative;
+  overflow: hidden;
+}
+
+.ctaPrimary::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.5s;
+}
+
+.ctaPrimary:hover::before {
+  left: 100%;
 }
 
 .ctaPrimary:hover {
@@ -97,10 +141,27 @@
   font-weight: 600;
   transition: all 0.3s ease;
   border: 2px solid var(--color-primary);
+  position: relative;
+  overflow: hidden;
+}
+
+.ctaSecondary::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: var(--color-primary);
+  transition: left 0.3s ease;
+  z-index: -1;
+}
+
+.ctaSecondary:hover::before {
+  left: 0;
 }
 
 .ctaSecondary:hover {
-  background: var(--color-primary);
   color: white;
   transform: translateY(-2px);
   box-shadow: 0 8px 25px rgba(0, 13, 51, 0.2);
@@ -117,6 +178,19 @@
   color: var(--color-primary);
   margin-bottom: 1rem;
   font-weight: 700;
+  position: relative;
+}
+
+.sectionHeader h2::after {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60px;
+  height: 3px;
+  background: linear-gradient(90deg, var(--color-secondary), var(--color-accent));
+  border-radius: 2px;
 }
 
 .sectionHeader p {
@@ -147,18 +221,29 @@
   background: white;
   border-radius: 12px;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transition: all 0.4s ease;
+  border: 1px solid transparent;
 }
 
 .valueCard:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+  transform: translateY(-8px);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+  border-color: var(--color-secondary);
 }
 
 .valueIcon {
   font-size: 3rem;
   margin-bottom: 1rem;
   display: block;
+  animation: float 3s ease-in-out infinite;
+}
+
+.valueCard:nth-child(2) .valueIcon {
+  animation-delay: 1s;
+}
+
+.valueCard:nth-child(3) .valueIcon {
+  animation-delay: 2s;
 }
 
 .valueCard h3 {
@@ -190,10 +275,11 @@
   padding: 2rem;
   border: 2px solid var(--color-primary);
   border-radius: 12px;
-  transition: all 0.3s ease;
+  transition: all 0.4s ease;
   background: var(--color-background-secondary);
   position: relative;
   overflow: hidden;
+  cursor: pointer;
 }
 
 .serviceCard::before {
@@ -203,24 +289,43 @@
   left: 0;
   width: 100%;
   height: 4px;
-  background: var(--color-secondary);
+  background: linear-gradient(90deg, var(--color-secondary), var(--color-accent));
   transform: scaleX(0);
-  transition: transform 0.3s ease;
+  transition: transform 0.4s ease;
+}
+
+.serviceCard::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: linear-gradient(135deg, transparent 0%, rgba(0, 155, 224, 0.03) 100%);
+  opacity: 0;
+  transition: opacity 0.4s ease;
 }
 
 .serviceCard:hover::before {
   transform: scaleX(1);
 }
 
+.serviceCard:hover::after {
+  opacity: 1;
+}
+
 .serviceCard:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 8px 30px rgba(0, 13, 51, 0.1);
+  transform: translateY(-8px);
+  box-shadow: 0 16px 40px rgba(0, 13, 51, 0.15);
+  border-color: var(--color-secondary);
 }
 
 .serviceIcon {
   font-size: 2.5rem;
   margin-bottom: 1rem;
   display: block;
+  position: relative;
+  z-index: 2;
 }
 
 .serviceCard h3 {
@@ -228,18 +333,24 @@
   margin-bottom: 1rem;
   font-size: 1.4rem;
   font-weight: 600;
+  position: relative;
+  z-index: 2;
 }
 
 .serviceCard p {
   color: var(--color-text);
   line-height: 1.6;
   margin-bottom: 1.5rem;
+  position: relative;
+  z-index: 2;
 }
 
 .serviceFeatures {
   list-style: none;
   padding: 0;
   margin: 0;
+  position: relative;
+  z-index: 2;
 }
 
 .serviceFeatures li {
@@ -247,6 +358,7 @@
   margin-bottom: 0.5rem;
   position: relative;
   padding-left: 1.5rem;
+  transition: transform 0.3s ease;
 }
 
 .serviceFeatures li::before {
@@ -255,6 +367,10 @@
   left: 0;
   color: var(--color-secondary);
   font-weight: bold;
+}
+
+.serviceCard:hover .serviceFeatures li {
+  transform: translateX(5px);
 }
 
 /* Founder Section */
@@ -314,10 +430,87 @@
   background: white;
   border-radius: 8px;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  transition: all 0.3s ease;
+  border: 1px solid transparent;
+}
+
+.credential:hover {
+  transform: translateX(10px);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  border-color: var(--color-secondary);
 }
 
 .credentialIcon {
   font-size: 1.5rem;
+}
+
+/* Testimonials Section */
+.testimonialsSection {
+  padding: 4rem 0;
+}
+
+.testimonialsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 2rem;
+  margin: 0 auto;
+  max-width: 1200px;
+}
+
+.testimonialCard {
+  background: white;
+  padding: 2.5rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  transition: all 0.4s ease;
+  border: 1px solid transparent;
+  position: relative;
+}
+
+.testimonialCard::before {
+  content: '"';
+  position: absolute;
+  top: 1rem;
+  left: 2rem;
+  font-size: 4rem;
+  color: var(--color-secondary);
+  opacity: 0.3;
+  font-family: serif;
+  line-height: 1;
+}
+
+.testimonialCard:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+  border-color: var(--color-secondary);
+}
+
+.testimonialQuote {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  color: var(--color-text);
+  margin-bottom: 2rem;
+  font-style: italic;
+  position: relative;
+  z-index: 2;
+}
+
+.testimonialAuthor {
+  border-top: 2px solid var(--color-background-secondary);
+  padding-top: 1.5rem;
+}
+
+.authorName {
+  font-weight: 600;
+  color: var(--color-primary);
+  margin-bottom: 0.5rem;
+  font-size: 1.1rem;
+}
+
+.authorTitle {
+  color: var(--color-text);
+  opacity: 0.7;
+  font-size: 0.95rem;
 }
 
 /* Contact Section */
@@ -325,12 +518,27 @@
   padding: 4rem 0;
   background: linear-gradient(135deg, var(--color-primary) 0%, #001a44 100%);
   color: white;
+  position: relative;
+  overflow: hidden;
+}
+
+.contactSection::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="20" cy="20" r="2" fill="rgba(255,255,255,0.1)"/><circle cx="80" cy="40" r="1" fill="rgba(255,255,255,0.05)"/><circle cx="40" cy="80" r="1.5" fill="rgba(255,255,255,0.08)"/></svg>');
+  pointer-events: none;
 }
 
 .contactContent {
   text-align: center;
   max-width: 800px;
   margin: 0 auto;
+  position: relative;
+  z-index: 2;
 }
 
 .contactContent h2 {
@@ -359,11 +567,13 @@
   padding: 2rem;
   border-radius: 12px;
   border: 1px solid rgba(255, 255, 255, 0.2);
-  transition: transform 0.3s ease;
+  transition: all 0.4s ease;
 }
 
 .contactCard:hover {
-  transform: translateY(-5px);
+  transform: translateY(-8px);
+  background: rgba(255, 255, 255, 0.15);
+  border-color: rgba(255, 255, 255, 0.3);
 }
 
 .contactCard h3 {
@@ -388,6 +598,23 @@
   font-weight: 600;
   transition: all 0.3s ease;
   display: inline-block;
+  position: relative;
+  overflow: hidden;
+}
+
+.contactCta::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.5s;
+}
+
+.contactCta:hover::before {
+  left: 100%;
 }
 
 .contactCta:hover {
@@ -546,7 +773,7 @@
     text-align: center;
   }
   
-  .valueGrid, .servicesGrid {
+  .valueGrid, .servicesGrid, .testimonialsGrid {
     grid-template-columns: 1fr;
   }
   
@@ -562,5 +789,32 @@
     flex-direction: column;
     text-align: center;
     gap: 0.5rem;
+  }
+  
+  .sectionHeader h2 {
+    font-size: 2rem;
+  }
+  
+  .servicesGrid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  
+  .valueGrid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  
+  .testimonialsGrid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  
+  .testimonialCard {
+    padding: 2rem;
+  }
+  
+  .testimonialQuote {
+    font-size: 1rem;
   }
 }
